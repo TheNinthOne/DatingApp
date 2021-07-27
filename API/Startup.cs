@@ -34,6 +34,7 @@ namespace API
                 options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
             });
             services.AddControllers();
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
@@ -54,9 +55,11 @@ namespace API
 
             app.UseHttpsRedirection(); //redirection if we come in on a http address then we get redirected to the https endpoint
 
-            app.UseRouting(); //
+            app.UseRouting(); 
 
-            app.UseAuthorization(); //
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+
+            app.UseAuthorization(); 
 
             app.UseEndpoints(endpoints => //middleware to actually use the endpoints
             {
