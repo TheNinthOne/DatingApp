@@ -18,7 +18,7 @@ namespace API.Entities
         public string Gender { get; set; }
         public string LookingFor { get; set; }
         public string Introduction { get; set; }
-        public string Intrests { get; set; }
+        public string Interests { get; set; }
         public ICollection<Photo> Photos { get; set; }
         
        /*  public int GetAfe()
