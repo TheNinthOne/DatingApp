@@ -4,6 +4,8 @@ using API.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
+using API.Helpers;
 
 namespace API.Extentions
 {
@@ -16,6 +18,8 @@ namespace API.Extentions
                 options.UseSqlite(config.GetConnectionString("DefaultConnection"));
             });
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             return services;
         }
     }
